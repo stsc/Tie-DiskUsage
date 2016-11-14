@@ -9,7 +9,7 @@ use Tie::Hash ();
 
 our ($VERSION, @ISA, $DU_BIN);
 
-$VERSION = '0.21';
+$VERSION = '0.21_01';
 @ISA = qw(Tie::StdHash);
 
 $DU_BIN = '/usr/bin/du';
@@ -17,20 +17,64 @@ $DU_BIN = '/usr/bin/du';
 sub TIEHASH
 {
     my $class = shift;
-    return bless _tie(@_), $class;
-}
-sub UNTIE {}
 
-sub _tie
-{
     my $du = _locate_du();
     my $path = shift @_;
     my @opts = @_;
 
     _validate($path, \@opts);
 
-    return _parse_usage($du, $path, @opts);
+    return bless { du => $du, path => $path, opts => \@opts }, $class;
 }
+
+sub EXISTS
+{
+    my $self = shift;
+    my ($key) = @_;
+
+    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts});
+
+    return exists $usage->{$key};
+}
+
+sub FETCH
+{
+    my $self = shift;
+    my ($key) = @_;
+
+    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts});
+
+    return $usage->{$key};
+}
+
+sub FIRSTKEY
+{
+    my $self = shift;
+
+    $self->{cached_usage} = _parse_usage($self->{du}, $self->{path}, $self->{opts});
+
+    return each %{$self->{cached_usage}};
+}
+
+sub NEXTKEY
+{
+    my $self = shift;
+
+    return each %{$self->{cached_usage}};
+}
+
+sub SCALAR
+{
+    my $self = shift;
+
+    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts});
+
+    return scalar %$usage;
+}
+
+sub UNTIE {}
+
+*CLEAR = *DELETE = *STORE = sub { croak 'Tied hash is read-only' };
 
 sub _validate
 {
@@ -75,11 +119,11 @@ sub _locate_du
 
 sub _parse_usage
 {
-    my ($du, $path, @opts) = @_;
+    my ($du, $path, $opts) = @_;
     $path ||= do { require Cwd; Cwd::getcwd() };
 
     my $pipe = Symbol::gensym();
-    open($pipe, "$du @opts $path |") or exit(1);
+    open($pipe, "$du @$opts $path |") or exit(1);
 
     my %usage;
     while (my $line = <$pipe>) {

@@ -5,7 +5,7 @@ use warnings;
 
 use File::Spec;
 use FindBin qw($Bin);
-use Test::More tests => 2;
+use Test::More tests => 8;
 use Tie::DiskUsage;
 
 my $path = File::Spec->catfile($Bin, 'data');
@@ -30,4 +30,17 @@ my $path = File::Spec->catfile($Bin, 'data');
     untie %usage;
 
     $Tie::DiskUsage::DU_BIN = $du_bin_default;
+}
+
+{
+    tie my %usage, 'Tie::DiskUsage', $path;
+
+    ok(exists $usage{$path},           'tie path exists');
+    ok(defined $usage{$path},          'tie path defined');
+    is((keys %usage)[0], $path,        'tie path keys');
+    cmp_ok((values %usage)[0], '>', 0, 'tie path values');
+    is(()=each %usage, 2,              'tie path each');
+    ok(defined scalar %usage,          'tie path scalar');
+
+    untie %usage;
 }

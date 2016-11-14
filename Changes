@@ -1,5 +1,14 @@
 Revision history for Perl extension Tie::DiskUsage.
 
+0.21_01  2016-11-14  <schubiger@cpan.org>
+
+ - Parse disk usage each time data is requested.
+
+ - Implement all read-only operations on tied hash;
+   add tests.
+
+ - Croak when attempting to modify the tied hash.
+
 0.21  2010-09-08  <schubiger@cpan.org>
 
  - Merged development version to stable.
