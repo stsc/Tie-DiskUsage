@@ -18,7 +18,7 @@ name: Tie-DiskUsage
 provides:
   Tie::DiskUsage:
     file: lib/Tie/DiskUsage.pm
-    version: 0.21_01
+    version: 0.21_02
 recommends:
   Test::Pod: '1.14'
   Test::Pod::Coverage: '1.04'
@@ -30,5 +30,6 @@ requires:
   Tie::Hash: '0'
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.21_01
+  repository: https://github.com/stsc/Tie-DiskUsage
+version: 0.21_02
 x_serialization_backend: 'CPAN::Meta::YAML version 0.012'

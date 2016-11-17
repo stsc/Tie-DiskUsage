@@ -1,5 +1,13 @@
 Revision history for Perl extension Tie::DiskUsage.
 
+0.21_02  2016-11-17  <schubiger@cpan.org>
+
+ - Improve {FIRST,NEXT}KEY().
+
+ - Skip documentation tests for non-release testing.
+
+ - Add metadata repository link.
+
 0.21_01  2016-11-14  <schubiger@cpan.org>
 
  - Parse disk usage each time data is requested.

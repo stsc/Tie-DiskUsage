@@ -9,7 +9,7 @@ use Tie::Hash ();
 
 our ($VERSION, @ISA, $DU_BIN);
 
-$VERSION = '0.21_01';
+$VERSION = '0.21_02';
 @ISA = qw(Tie::StdHash);
 
 $DU_BIN = '/usr/bin/du';
@@ -51,16 +51,21 @@ sub FIRSTKEY
 {
     my $self = shift;
 
-    $self->{cached_usage} = _parse_usage($self->{du}, $self->{path}, $self->{opts});
+    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts});
 
-    return each %{$self->{cached_usage}};
+    my @keys = sort keys %$usage;
+    my $key = shift @keys;
+    delete $self->{'keys'};
+    $self->{'keys'} = [ @keys ];
+
+    return $key;
 }
 
 sub NEXTKEY
 {
     my $self = shift;
 
-    return each %{$self->{cached_usage}};
+    return shift @{$self->{'keys'}};
 }
 
 sub SCALAR
