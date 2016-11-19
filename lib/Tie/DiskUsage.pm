@@ -5,12 +5,10 @@ use warnings;
 
 use Carp qw(croak);
 use Symbol ();
-use Tie::Hash ();
 
-our ($VERSION, @ISA, $DU_BIN);
+our ($VERSION, $DU_BIN);
 
-$VERSION = '0.21_02';
-@ISA = qw(Tie::StdHash);
+$VERSION = '0.21_03';
 
 $DU_BIN = '/usr/bin/du';
 

@@ -15,17 +15,12 @@ my $build = Module::Build->new
                  'Cwd' => 0,
                  'File::Which' => 0,
                  'Symbol' => 0,
-                 'Tie::Hash' => 0,
                },
    build_requires => {
                        'File::Spec' => 0,
                        'File::Temp' => 0,
                        'Test::More' => 0,
                      },
-   recommends => {
-                   'Test::Pod' => '1.14',
-                   'Test::Pod::Coverage' => '1.04',
-                 },
    license => 'perl',
    create_readme => 1,
    create_makefile_pl => 'traditional',

@@ -11,8 +11,7 @@ WriteMakefile
                    'File::Temp' => 0,
                    'File::Which' => 0,
                    'Symbol' => 0,
-                   'Test::More' => 0,
-                   'Tie::Hash' => 0
+                   'Test::More' => 0
                  },
   'INSTALLDIRS' => 'site',
   'EXE_FILES' => [],
