@@ -4,9 +4,22 @@ NAME
 SYNOPSIS
      use Tie::DiskUsage;
 
+     # common use
      tie %usage, 'Tie::DiskUsage', '/var', '-h';
      print $usage{'/var/log'};
      untie %usage;
+
+     # also implemented
+     exists $usage{'/var/log'};
+     keys   %usage;
+     values %usage;
+     each   %usage;
+     scalar %usage;
+
+     # fatal error
+     %usage = ();
+     delete $usage{'/var/log'};
+     $usage{'/var/log'} = 1024 ** 2;
 
 DESCRIPTION
     `Tie::DiskUsage' ties the disk usage, which is extracted from the output

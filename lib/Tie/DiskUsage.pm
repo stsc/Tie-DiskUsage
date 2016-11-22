@@ -8,7 +8,7 @@ use Symbol ();
 
 our ($VERSION, $DU_BIN);
 
-$VERSION = '0.21_03';
+$VERSION = '0.21_04';
 
 $DU_BIN = '/usr/bin/du';
 
@@ -30,7 +30,7 @@ sub EXISTS
     my $self = shift;
     my ($key) = @_;
 
-    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts});
+    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts}, $key);
 
     return exists $usage->{$key};
 }
@@ -40,7 +40,7 @@ sub FETCH
     my $self = shift;
     my ($key) = @_;
 
-    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts});
+    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts}, $key);
 
     return $usage->{$key};
 }
@@ -49,7 +49,7 @@ sub FIRSTKEY
 {
     my $self = shift;
 
-    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts});
+    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts}, undef);
 
     my @keys = sort keys %$usage;
     my $key = shift @keys;
@@ -70,7 +70,7 @@ sub SCALAR
 {
     my $self = shift;
 
-    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts});
+    my $usage = _parse_usage($self->{du}, $self->{path}, $self->{opts}, undef);
 
     return scalar %$usage;
 }
@@ -122,7 +122,7 @@ sub _locate_du
 
 sub _parse_usage
 {
-    my ($du, $path, $opts) = @_;
+    my ($du, $path, $opts, $key) = @_;
     $path ||= do { require Cwd; Cwd::getcwd() };
 
     my $pipe = Symbol::gensym();
@@ -131,6 +131,8 @@ sub _parse_usage
     my %usage;
     while (my $line = <$pipe>) {
         my ($size, $item) = $line =~ /^(.+?) \s+? (.+)$/x;
+        # optimisation for EXISTS/FETCH
+        next if defined $key && $key ne $item;
         $usage{$item} = $size;
     }
 
@@ -150,9 +152,22 @@ Tie::DiskUsage - Tie disk usage to a hash
 
  use Tie::DiskUsage;
 
+ # common use
  tie %usage, 'Tie::DiskUsage', '/var', '-h';
  print $usage{'/var/log'};
  untie %usage;
+
+ # also implemented
+ exists $usage{'/var/log'};
+ keys   %usage;
+ values %usage;
+ each   %usage;
+ scalar %usage;
+
+ # fatal error
+ %usage = ();
+ delete $usage{'/var/log'};
+ $usage{'/var/log'} = 1024 ** 2;
 
 =head1 DESCRIPTION
 

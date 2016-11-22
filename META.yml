@@ -18,7 +18,7 @@ name: Tie-DiskUsage
 provides:
   Tie::DiskUsage:
     file: lib/Tie/DiskUsage.pm
-    version: 0.21_03
+    version: 0.21_04
 requires:
   Carp: '0'
   Cwd: '0'
@@ -27,5 +27,5 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: https://github.com/stsc/Tie-DiskUsage
-version: 0.21_03
+version: 0.21_04
 x_serialization_backend: 'CPAN::Meta::YAML version 0.012'

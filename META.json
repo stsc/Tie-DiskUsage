@@ -38,7 +38,7 @@
    "provides" : {
       "Tie::DiskUsage" : {
          "file" : "lib/Tie/DiskUsage.pm",
-         "version" : "0.21_03"
+         "version" : "0.21_04"
       }
    },
    "release_status" : "testing",
@@ -50,6 +50,6 @@
          "url" : "https://github.com/stsc/Tie-DiskUsage"
       }
    },
-   "version" : "0.21_03",
+   "version" : "0.21_04",
    "x_serialization_backend" : "JSON::PP version 2.27203"
 }

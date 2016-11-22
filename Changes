@@ -1,5 +1,11 @@
 Revision history for Perl extension Tie::DiskUsage.
 
+0.21_04  2016-11-22  <schubiger@cpan.org>
+
+ - Document all possible operations on tied hash.
+
+ - Optimize fetching single disk usage entry.
+
 0.21_03  2016-11-19  <schubiger@cpan.org>
 
  - Don't inherit from Tie::StdHash.
