@@ -8,7 +8,7 @@ use Symbol ();
 
 our ($VERSION, $DU_BIN);
 
-$VERSION = '0.21_04';
+$VERSION = '0.21_05';
 
 $DU_BIN = '/usr/bin/du';
 
@@ -188,6 +188,9 @@ automatic search for C<du>).
 
 Processing output of C<du(1)> requires that each output line is ended
 by a newline.
+
+In order to successfully run C<du(1)> on a given path, you might need to
+elevate permissions of the process using C<Tie::DiskUsage>.
 
 =head1 SEE ALSO
 

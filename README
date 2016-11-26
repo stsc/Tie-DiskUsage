@@ -40,6 +40,9 @@ BUGS & CAVEATS
     Processing output of `du(1)' requires that each output line is ended by
     a newline.
 
+    In order to successfully run `du(1)' on a given path, you might need to
+    elevate permissions of the process using `Tie::DiskUsage'.
+
 SEE ALSO
     perlfunc, du(1), Filesys::DiskUsage, Sys::Statistics::Linux
 

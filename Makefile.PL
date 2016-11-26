@@ -10,6 +10,7 @@ WriteMakefile
                    'File::Spec' => 0,
                    'File::Temp' => 0,
                    'File::Which' => 0,
+                   'FindBin' => 0,
                    'Symbol' => 0,
                    'Test::More' => 0
                  },

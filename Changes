@@ -1,5 +1,11 @@
 Revision history for Perl extension Tie::DiskUsage.
 
+0.21_05  2016-11-26  <schubiger@cpan.org>
+
+ - List FindBin as prerequisite.
+
+ - Mention elevating permissions.
+
 0.21_04  2016-11-22  <schubiger@cpan.org>
 
  - Document all possible operations on tied hash.

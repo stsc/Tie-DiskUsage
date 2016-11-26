@@ -19,6 +19,7 @@ my $build = Module::Build->new
    build_requires => {
                        'File::Spec' => 0,
                        'File::Temp' => 0,
+                       'FindBin' => 0,
                        'Test::More' => 0,
                      },
    license => 'perl',

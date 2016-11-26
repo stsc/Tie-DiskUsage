@@ -5,6 +5,7 @@ author:
 build_requires:
   File::Spec: '0'
   File::Temp: '0'
+  FindBin: '0'
   Test::More: '0'
 configure_requires:
   Module::Build: '0.42'
@@ -18,7 +19,7 @@ name: Tie-DiskUsage
 provides:
   Tie::DiskUsage:
     file: lib/Tie/DiskUsage.pm
-    version: 0.21_04
+    version: 0.21_05
 requires:
   Carp: '0'
   Cwd: '0'
@@ -27,5 +28,5 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: https://github.com/stsc/Tie-DiskUsage
-version: 0.21_04
+version: 0.21_05
 x_serialization_backend: 'CPAN::Meta::YAML version 0.012'
