@@ -39,10 +39,10 @@
    "provides" : {
       "Tie::DiskUsage" : {
          "file" : "lib/Tie/DiskUsage.pm",
-         "version" : "0.21_05"
+         "version" : "0.22"
       }
    },
-   "release_status" : "testing",
+   "release_status" : "stable",
    "resources" : {
       "license" : [
          "http://dev.perl.org/licenses/"
@@ -51,6 +51,6 @@
          "url" : "https://github.com/stsc/Tie-DiskUsage"
       }
    },
-   "version" : "0.21_05",
+   "version" : "0.22",
    "x_serialization_backend" : "JSON::PP version 2.27203"
 }

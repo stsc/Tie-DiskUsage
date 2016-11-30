@@ -8,7 +8,7 @@ use Symbol ();
 
 our ($VERSION, $DU_BIN);
 
-$VERSION = '0.21_05';
+$VERSION = '0.22';
 
 $DU_BIN = '/usr/bin/du';
 

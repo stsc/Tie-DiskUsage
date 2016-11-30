@@ -1,5 +1,9 @@
 Revision history for Perl extension Tie::DiskUsage.
 
+0.22  2016-11-30  <schubiger@cpan.org>
+
+ - Merged development version to stable.
+
 0.21_05  2016-11-26  <schubiger@cpan.org>
 
  - List FindBin as prerequisite.
